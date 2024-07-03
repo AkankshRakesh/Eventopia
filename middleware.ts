@@ -29,6 +29,7 @@ export default async function middleware(req: NextRequest) {
   if (isRouteMatched(pathname, publicRoutes) || isRouteMatched(pathname, ignoredRoutes)) {
     return NextResponse.next();
   }
+  
 
   const auth = getAuth(req);
 
