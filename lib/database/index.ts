@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const MONGODB_URI = process.env.MONGODB_URI; //mongodb+srv://akankshrakesh:Akanksh01@eventopia.3wpbhav.mongodb.net/?retryWrites=true&w=majority&appName=Eventopia
+const MONGODB_URI = "mongodb+srv://akankshrakesh:Akanksh01@eventopia.3wpbhav.mongodb.net/?retryWrites=true&w=majority&appName=Eventopia"
 let cached = (global as any).mongoose || {conn : null, promise : null};
 
 export const connectToDatabase = async () => {
