@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@view-transition {
+  navigation: auto;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -274,3 +278,4 @@ body {
 .react-datepicker__time-list-item--selected {
   background-color: #624cf5 !important;
 }
+

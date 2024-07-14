@@ -1,18 +1,19 @@
-import mongoose from 'mongoose'
-
-const MONGODB_URI = process.env.MONGODB_URI; //mongodb+srv://akankshrakesh:Akanksh01@eventopia.3wpbhav.mongodb.net/?retryWrites=true&w=majority&appName=Eventopia
-let cached = (global as any).mongoose || {conn : null, promise : null};
-
+import mongoose from 'mongoose';
+const MONGODB_URI = process.env.MONGODB_URI;
+if (!MONGODB_URI) {
+    throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
+}
+let cached = (global as any).mongoose || { conn: null, promise: null };
 export const connectToDatabase = async () => {
-    if(cached.conn) return cached.conn;
+    if (cached.conn) return cached.conn;
 
-    if(!MONGODB_URI) throw new Error('MongoDB URI is missing');
+    if (!MONGODB_URI) throw new Error('MongoDB URI is missing');
 
     cached.promise = cached.promise || mongoose.connect(MONGODB_URI, {
-        dbName : 'eventopia',
+        dbName: 'eventopia',
         bufferCommands: false,
-    })
-    cached.conn = await cached.promise;
+    }).then((mongoose) => mongoose);
 
+    cached.conn = await cached.promise;
     return cached.conn;
-}
+};
